@@ -1,5 +1,9 @@
 <template>
-      <BaseSideBar mainTitle="Calendar"/>
+      <BaseSideBar mainTitle="Calendar"> 
+            <template v-slot:body>
+                  <p> Hello World Calendar !</p>
+            </template>
+      </BaseSideBar>
 </template>
 
 <script>

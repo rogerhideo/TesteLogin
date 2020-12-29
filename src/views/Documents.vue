@@ -1,5 +1,9 @@
 <template>
-      <BaseSideBar mainTitle="Documents"/>
+      <BaseSideBar mainTitle="Documents"> 
+            <template v-slot:body>
+                  <p> Hello World Documents !</p>
+            </template>
+      </BaseSideBar>
 </template>
 
 <script>

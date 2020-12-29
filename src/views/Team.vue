@@ -1,5 +1,9 @@
 <template>
-      <BaseSideBar mainTitle="Team"/>
+      <BaseSideBar mainTitle="Team"> 
+            <template v-slot:body>
+                  <p> Hello World Team !</p>
+            </template>
+      </BaseSideBar>
 </template>
 
 <script>

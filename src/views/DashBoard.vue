@@ -1,5 +1,9 @@
 <template>
-      <BaseSideBar mainTitle="DashBoard"/>
+      <BaseSideBar mainTitle="Dashboard"> 
+            <template v-slot:body>
+                  <p> Hello World Dashboard !</p>
+            </template>
+      </BaseSideBar>
 </template>
 
 <script>
