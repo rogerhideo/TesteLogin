@@ -29,7 +29,7 @@
       				</template>
 
 				<BaseInput
-        				label="User Name"        
+        				label="Password"        
 					id="password"
 					name="password"
         				type="password"
@@ -44,15 +44,6 @@
           						Password is required.
         					</p>
       				</template>	
-
-				<div>
-					<label for="password" class="block text-sm font-medium text-gray-700">
-						Password
-					</label>
-					<div class="mt-1">
-						<input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-					</div>
-				</div>
 
 
 				<div>
@@ -69,27 +60,14 @@
 <script>
 import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
-import store from '@/store'
+//import store from '@/store'
 
-// Moved the current page & action call outside the component
-function getPageUsers(routeTo, next) {
-  const currentPage = parseInt(routeTo.query.page || 1)
-  store
-    .dispatch('user/fetchUsers', {
-      page: currentPage
-    })
-    .then(() => {
-      // pass it into the component as a prop, so we can print next pages
-      routeTo.params.page = currentPage
-      next()
-    })
-}
 export default {
   data() {
     return {
 	aut: [{userName: String, 
-		password: String}],
-	users : this.$store.dispatch('user/fetchAllUsers')		
+		password: String}]
+			
     }
   },
   validations: {
@@ -98,11 +76,11 @@ export default {
 	password: { required }
     }
     
-    },
+    },/*
     methods :{
 	    authenticationSigin(){
-		    
-		    for (user in users)
+		    this.$store.dispatch('user/fetchAllUsers')
+		    for (user in this.users)
 			    if (this.aut.userName === user.userName){
 					if (this.aut.password === user.password){
 						const notification = {
@@ -118,30 +96,22 @@ export default {
 					else{
 						const notification = {
                     				type: 'error',
-                    				message: 'Your password is wrong. Try Again: ' + error.message
+                    				message: 'Your password is wrong. Try Again: '
                				}
                 			this.$store.dispatch('notification/add', notification, { root: true })
 					}
 			    } else{
 				    const notification = {
                     				type: 'error',
-                    				message: 'Your User Name isn\'t Found: ' + error.message
+                    				message: 'Your User Name isn\'t Found: ' 
                				}
                 			 this.$store.dispatch('notification/add', notification, { root: true })
 			    }
 
 	    }
 
-    },
+    }, */
     
-  beforeRouteEnter(routeTo, routeFrom, next) {
-    // Before we enter the route
-    getPageUsers(routeTo, next)
-  },
-  beforeRouteUpdate(routeTo, routeFrom, next) {
-    // Before we update the route
-    getPageUsers(routeTo, next)
-  	}, ///
     computed: {
 	    ...mapState(['user'])
     }

@@ -56,7 +56,7 @@ export const actions = {
                 dispatch('notification/add', notification, { root: true })
             })
     },
-    fetchAllUsers() {
+    fetchAllUsers({commit}) {
         return UserService.getAllUsers()
             .then(response => {
                 commit('SET_USERS', response.data)
