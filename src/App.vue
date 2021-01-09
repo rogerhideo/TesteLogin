@@ -1,11 +1,20 @@
 <template>
-  <div id="app">
-    <div id="nav">
+    <div id="app">
       
+      <NotificationContainer />
+      <router-view :key="$route.fullPath" />
     </div>
-    <router-view />
-  </div>
 </template>
+
+<script>
+import NotificationContainer from '@/components/NotificationContainer.vue'
+export default {
+  components: {
+    NotificationContainer
+  }
+}
+
+</script>
 
 <style>
 #app {
@@ -28,4 +37,21 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.-text-error {
+		color: tomato;
+	}
+	.error {
+	border: 1px solid red;
+	}
+	
+	.errorMessage {
+	color: red;
+	}
+	.button:disabled {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		box-shadow: none;
+		background: #eeeeee;
+	}
 </style>

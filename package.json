@@ -11,14 +11,21 @@
     "eslint-loader": "2.1.2"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^9.8.6",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
+    "node-sass": "^5.0.0",
+    "nprogress": "^0.2.0",
     "postcss": "^7.0.35",
+    "sass-loader": "^10.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vuelidate": "^0.7.6",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
