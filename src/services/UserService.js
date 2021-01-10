@@ -23,9 +23,7 @@ apiClient.interceptors.response.use(response => {
 })
 
 export default {
-    getAllUsers() {
-        return apiClient.get('/users')
-    },
+
     getUsers(perPage, page) {
         return apiClient.get('/users?_limit=' + perPage + '&_page=' + page)
     },

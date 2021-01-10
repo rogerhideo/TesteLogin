@@ -16,7 +16,7 @@ export const mutations = {
         state.users = users
     },
     SET_USERS_TOTAL(state, usersTotal) {
-        state.usersTotal = usersTotal
+        state.usersTotal = usersTotal + 1
     },
     SET_USER(state, user) {
         state.user = user
@@ -56,18 +56,26 @@ export const actions = {
                 dispatch('notification/add', notification, { root: true })
             })
     },
-    fetchAllUsers({commit}) {
-        return UserService.getAllUsers()
+    fetchAllUsers({commit, dispatch, state}) {     
+        UserService.getUsers(state.perPage, 1)
             .then(response => {
-                commit('SET_USERS', response.data)
+                commit('SET_USERS_TOTAL', parseInt(response.headers['x-total-count'] ))
             })
-            .catch(error => {
-                const notification = {
-                    type: 'error',
-                    message: 'There was a problem fetching users: ' + error.message
-                }
-                dispatch('notification/add', notification, { root: true })
+            .catch({
+                
             })
+            return UserService.getUsers(12 , 0)
+                .then(response => {
+                    commit('SET_USERS', response.data)
+                    console.log('KKKKKKK')
+                })
+                .catch(error => {
+                    const notification = {
+                        type: 'error',
+                        message: 'There was a problem fetching users: ' + error.message
+                    }
+                    dispatch('notification/add', notification, { root: true })
+                })
     },
     fetchUser({ commit, getters, state }, id) {
         if (id == state.user.id) {
@@ -90,8 +98,5 @@ export const actions = {
 export const getters = {
     getUserById: state => id => {
         return state.users.find(user => user.id === id)
-    },
-    getUserByuserName: state => userName => {
-        return state.users.find(user => user.userName === userName)
     }
 }

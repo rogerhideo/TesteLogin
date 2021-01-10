@@ -9,7 +9,7 @@
 	
 	<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 		<div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-			<form class="space-y-6" action="#" method="POST">
+			<form class="space-y-6" >
 
 				<BaseInput
         				label="User Name"        
@@ -61,61 +61,30 @@
 import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 //import store from '@/store'
+//import NProgress from 'nprogress'
 
 export default {
-  data() {
-    return {
-	aut: [{userName: String, 
-		password: String}]
-			
-    }
-  },
-  validations: {
-    aut: {
-      userName: { required },
-	password: { required }
-    }
+	data() {
+		return {
+			aut: [{userName: String, 
+				password: String}],				
+	}
+	},
+	validations: {
+		aut: {
+			userName: { required },
+			password: { required }
+		}	
+	},
+	mounted () {
+		this.$store.dispatch('user/fetchAllUsers');
+	},
+	
+	computed: {
+		...mapState(['user'])
+	}
+    		
     
-    },/*
-    methods :{
-	    authenticationSigin(){
-		    this.$store.dispatch('user/fetchAllUsers')
-		    for (user in this.users)
-			    if (this.aut.userName === user.userName){
-					if (this.aut.password === user.password){
-						const notification = {
-                    				type: 'success',
-                   				 message: 'Your login is Succesfull !'
-                					}
-							    this.$store.dispatch('notification/add', notification, { root: true })
-						this.$router.push({
-							name: 'DashBoard',
-							path: '/dashboard'
-							})	    
-					}
-					else{
-						const notification = {
-                    				type: 'error',
-                    				message: 'Your password is wrong. Try Again: '
-               				}
-                			this.$store.dispatch('notification/add', notification, { root: true })
-					}
-			    } else{
-				    const notification = {
-                    				type: 'error',
-                    				message: 'Your User Name isn\'t Found: ' 
-               				}
-                			 this.$store.dispatch('notification/add', notification, { root: true })
-			    }
-
-	    }
-
-    }, */
-    
-    computed: {
-	    ...mapState(['user'])
-    }
-    
-    }
+}
 
 </script>
