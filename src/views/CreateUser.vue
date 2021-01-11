@@ -53,7 +53,7 @@
 							label="Password"        
 							id="password"
 							name="password"
-							type="text"
+							type="password"
 							v-model="user.password"
 							class="bshadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
 							:class="{ error: $v.user.password.$error }"
@@ -157,10 +157,12 @@
 					<button type="submit" :disabled="$v.$anyError" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 						Save
 					</button>
-					<p v-if="$v.$anyError" class="errorMessage">
-						Please fill out the required field(s).
-					</p>
 				</div>
+			</div>
+			<div>
+				<p v-if="$v.$anyError" class="errorMessage">
+					Please fill out the required field(s).
+				</p>
 			</div>
 		</form>
 </template>

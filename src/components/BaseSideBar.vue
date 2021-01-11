@@ -1,6 +1,6 @@
 <template>
-<div class="h-screen flex overflow-hidden bg-white">
-	<div class="md:hidden">
+<div class="h-screen flex overflow-hidden bg-white" >
+	<div class="md:hidden" v-show="isOpen">
 		<div class="fixed inset-0 flex z-40">
 		<transition
 				enter-active-class="transition-opacity ease-linear duration-300"
@@ -47,14 +47,15 @@
 				</div>
 			</div>
 		</transition>
-			<div class="flex-shrink-0 w-14">
+			<div class="flex-shrink-0 w-14" 
+			>
 				<!-- Force sidebar to shrink to fit close icon -->
 			</div>
 		</div>
 	</div>
 	
 	<!-- Static sidebar for desktop -->
-	<div class="hidden md:flex md:flex-shrink-0">
+	<div class="hidden md:flex md:flex-shrink-0" >
 		<div class="flex flex-col w-64">			
 			<div class="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">
 				<div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
@@ -67,7 +68,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="flex flex-col w-0 flex-1 overflow-hidden">
+	<div class="flex flex-col w-0 flex-1 overflow-hidden" >
 		<div class="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
 			<button 
 				class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
