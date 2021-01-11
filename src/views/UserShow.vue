@@ -1,21 +1,23 @@
 <template>
-  <div>
+  <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="event-header">
       <h1 class="title">{{ user.userName }}</h1>
       <h5>Email: {{ user.email }}</h5>
     </div>
-    
-    <h2>User details</h2>
+    <div class="pt-5">   
+      <p>User details</p>
+    </div>
+    <div class="pt-5">    
     <p>{{ user.streetAddress }}</p>
-    <h2>
+    
       <ul>
         <li>{{ user.city }}</li>
         <li>{{ user.stateP }}</li>
         <li>{{ user.country }}</li>
         <li>{{ user.postalCode }}</li>
       </ul>
-    </h2>
-  
+    
+    </div>
   </div>
 </template>
 

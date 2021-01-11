@@ -74,40 +74,41 @@ export default {
 	},
 	methods :{
 	    	authenticationSigin(){
-			NProgress.start()
-			this.$store.dispatch('user/fetchAllUsers')
-			.then(() => {
-				for (var user of this.user.users){
-					console.log('começo for')
-					console.log('1user : ' + user.userName + ' password: ' + user.password )
-					if (this.userName === user.userName){
-						console.log('if username')
-						if (this.password === user.password){
-							console.log('if password')
-							const notification = {
-								type: 'success',
-								message: 'Your login is Succesfull !'
+			this.$v.$touch()    
+			if (!this.$v.$invalid) {     
+				NProgress.start()
+				this.$store.dispatch('user/fetchAllUsers')
+				.then(() => {
+					for (var user of this.user.users){
+						if (this.userName === user.userName){
+							console.log('if username')
+							if (this.password === user.password){
+								console.log('if password')
+								const notification = {
+									type: 'success',
+									message: 'Your login is Succesfull !'
+								}
+								this.$store.dispatch('notification/add', notification, { root: true })
+								this.$router.push({
+									name: 'DashBoard'
+								})
+								NProgress.done()
+								break;
+							}
+							else{
+								const notification = {
+									type: 'error',
+									message: 'Your password is wrong. Try Again: '
 							}
 							this.$store.dispatch('notification/add', notification, { root: true })
-							this.$router.push({
-								name: 'DashBoard',
-								path: '/dashboard'
-							})
-							break;
-						}
-						else{
-							const notification = {
-								type: 'error',
-								message: 'Your password is wrong. Try Again: '
-						}
-						this.$store.dispatch('notification/add', notification, { root: true })
+							}
 						}
 					}
+				})
+				.catch(() => {
+					NProgress.done()
+				})
 				}
-			})
-			.catch(() => {
-				NProgress.done()
-			})
 			}
     	},
 	mounted () {

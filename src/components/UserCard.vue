@@ -4,8 +4,8 @@
     :to="{ name: 'user-show', params: { id: user.id } }"
   >
     <div class="event-card -shadow">
-      <span class="eyebrow">@ {{ user.userName }}</span>
-      <h4 class="title">{{  user.email }}</h4>
+      <span class="eyebrow">Username:  {{ user.userName }}</span>
+      <h4 class="title">Email:  {{  user.email }}</h4>
       
     </div>
   </router-link>
