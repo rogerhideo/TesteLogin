@@ -61,13 +61,14 @@
 import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 //import store from '@/store'
-//import NProgress from 'nprogress'
+import NProgress from 'nprogress'
 
 export default {
 	data() {
 		return {
-			aut: [{userName: String, 
-				password: String}],				
+			aut: [{userName: '', 
+				password: ''
+			}]				
 	}
 	},
 	validations: {
@@ -76,6 +77,40 @@ export default {
 			password: { required }
 		}	
 	},
+	methods :{
+	    	authenticationSigin(){
+			NProgress.start()
+			this.$store.dispatch('user/fetchAllUsers')
+			.then(() => {
+				var user;
+				for (user in this.user.users){
+					if (this.aut.userName === user.userName){
+						if (this.aut.password === user.password){
+							const notification = {
+								type: 'success',
+								message: 'Your login is Succesfull !'
+							}
+							this.$store.dispatch('notification/add', notification, { root: true })
+							this.$router.push({
+								name: 'DashBoard',
+								path: '/dashboard'
+							})
+						}
+						else{
+							const notification = {
+								type: 'error',
+								message: 'Your password is wrong. Try Again: '
+						}
+						this.$store.dispatch('notification/add', notification, { root: true })
+						}
+					}
+				}
+			})
+			.catch(() => {
+			NProgress.done()
+			})
+			}
+    	},
 	mounted () {
 		this.$store.dispatch('user/fetchAllUsers');
 	},
