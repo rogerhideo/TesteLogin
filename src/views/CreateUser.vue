@@ -67,7 +67,7 @@
 						
 						<div class="sm:col-span-6">
 							<label for="country" class="block text-sm font-medium text-gray-700">Country / Region</label>
-							<select v-model="user.country" :class="{ error: $v.user.country.$error }"
+							<select class="sm:col-span-6" v-model="user.country" :class="{ error: $v.user.country.$error }"
 							@blur="$v.user.country.$touch()" >
 							<option v-for="country in countries" :key="country">{{ country }}</option>
 							</select>

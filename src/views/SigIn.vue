@@ -19,6 +19,7 @@
 					v-model="userName"
         				class="bshadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
       				:class="{ error: $v.userName.$error }"
+					@keyup.enter="authenticationSigin"
         				@blur="$v.userName.$touch()"
       			/>
       				<template v-if="$v.userName.$error">
@@ -36,6 +37,7 @@
 					v-model="password"
         				class="bshadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
       				:class="{ error: $v.password.$error }"
+					@keyup.enter="authenticationSigin"
         				@blur="$v.password.$touch()"
       			/>
       				<template v-if="$v.password.$error">
